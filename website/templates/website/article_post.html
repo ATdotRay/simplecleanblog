@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section>
+    <div class="container">
+        <h3 class="display-6 pb-4 pt-4 text-center"><span class="border-bottom">{{article.title}}</span></h3>
+        <div>
+            <div class="row justify-content-center">
+                <div class="col-md-10 "> 
+                    {% if not article.image %}
+                        <img class="img-fluid pageimage float-md-start me-2 mb-2 col-md-5" src="{% static 'images/defaultarticle.png' %}" alt="">
+                    {% else %}
+                        <img class="img-fluid pageimage float-md-start me-2 mb-2 col-md-5" src="{{ article.image.url }}" alt="">
+                    {% endif %}
+                    <p class="">{{article.content|linebreaksbr|safe}}</p>
+                </div>
+            </div>
+        </div> 
+    </div>
+</section>
+{% endblock%}

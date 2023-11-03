@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<section>
+    <div class="container">
+        <h3 class="display-6 pb-4 pt-4 text-center"><span class="border-bottom">{{service.title}}</span></h3>
+        <div>
+            <div class="row justify-content-center">
+                <div class="col-md-10 "> 
+                    {% if not service.image %}
+                        <img class="img-fluid pageimage float-md-start me-2 mb-2 col-md-5" src="{% static 'images/defaultservice.jpg' %}" alt="">
+                    {% else %}
+                        <img class="img-fluid pageimage float-md-start me-2 mb-2 col-md-5" src="{{ service.image.url }}" alt="">
+                    {% endif %}
+                    <p class="">{{service.content|linebreaksbr|safe}}</p>
+                </div>
+            </div>
+        </div> 
+    </div>
+</section>
+{% endblock%}

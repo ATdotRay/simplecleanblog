@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="mycardsection pt-4 pb-5">
+    <div class="container">
+        <h3 id="aboutsection" class="display-6 pb-1 text-center"><span class="border-bottom">Articles</span></h3>
+        <div class="row justify-content-center">
+            {% for article in articles %}
+            <div class="col-lg-3">
+                <div class="card my-4 text-center">
+                    {% if not article.image %}
+                        <img class="card-img-top" src="{% static 'images/defaultarticle.png' %}" alt="">
+                    {% else %}
+                        <img class="card-img-top" src="{{ article.image.url }}" alt="">
+                    {% endif %}
+                    <div class="card-body ">
+                        <h5 class="card-title">{{article.title}}</h5>
+                        <p class="card-text">{{article.content|slice:":60"}}...</p>
+                        <a href="{% url 'article-post' slug=article.slug %}" class="btn mycard-btn btn-primary">Read more</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

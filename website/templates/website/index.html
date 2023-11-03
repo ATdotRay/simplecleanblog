@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="mycardsection pt-4 pb-5">
+    <div class="container">
+        <h3 class="display-6 pb-1 text-center"><span class="border-bottom">Services</span></h3>
+        <div class="row justify-content-center">
+            {% comment %} {% for service in article_queryset|slice:":3" %}
+                <p>{{ article.field_name }}</p>
+            {% endfor %} {% endcomment %}
+            {% for service in services %}
+            <div class="col-lg-3">
+                <div class="card my-4 text-center">
+
+                    {% if not service.image %}
+                        <img class="card-img-top" src="{% static 'images/defaultservice.jpg' %}" alt="">
+                    {% else %}
+                        <img class="card-img-top" src="{{ service.image.url }}" alt="">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.title }}</h5>
+                        {% comment %} <p class="card-text">I can work with you to explore viable career choices that suit your interests...</p> {% endcomment %}
+                        <a href="{% url 'service-page' slug=service.slug %}" class="btn mycard-btn btn-primary">Find out more</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+    
+<section class="aboutme pb-4">
+    <div class="container">
+        <h3 id="aboutsection" class="display-6 pb-4 text-center"><span class="border-bottom">About me</span></h3>
+        <div class="row justify-content-center">
+            <div class="col-md-5 px-4 text-center">
+                <p>{{content.about1|safe}}</p>
+            </div>
+            <div class="col-md-5 p-4 p-md-0">
+                <h6 class="text-center">My Qualifications</h6>
+                <p>{{content.about2|safe}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="testimonial pb-5">
+    <div class="container py-5">
+        <div class="row justify-content-center text-center">
+            <h3 class="display-6 pb-4"><span class="border-bottom">What others have said</span></h3>
+            <div class="col-sm-4 pt-1">
+                <p>{{content.testimonial1|safe}}</p>
+                <div class="rating">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
+            </div>
+            <div class="col-sm-4 pt-1">
+                <p>{{content.testimonial2|safe}}</p>
+                <div class="rating">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block js_files%}
+    <script src="{% static 'js/myscript.js' %}"></script>
+{% endblock %}
+    
+{% endblock %}
